@@ -1,0 +1,1 @@
+export { ResumoCard } from './ResumoCard'

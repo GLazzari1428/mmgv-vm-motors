@@ -1,0 +1,1 @@
+export { ResumoFinanceiro } from './ResumoFinanceiro'
