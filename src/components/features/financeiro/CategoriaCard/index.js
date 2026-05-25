@@ -1,0 +1,1 @@
+export { CategoriaCard } from './CategoriaCard'
