@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { Menu, ArrowLeft, Plus, User, Car } from 'lucide-react'
+import { ArrowLeft, Plus, User, Car } from 'lucide-react'
+// import { Menu } from 'lucide-react' // menu hamburguer desativado por enquanto
 import styles from './Header.module.css'
 
 // header com 3 variacoes:
@@ -8,7 +9,6 @@ export const Header = ({
   left = 'menu',
   title,
   right = 'avatar',
-  onMenu,
   onPlus,
 }) => {
   const navigate = useNavigate()
@@ -19,19 +19,22 @@ export const Header = ({
   return (
     <header className={styles.header}>
       <div className={styles.side}>
-        {left === 'back' ? (
+        {left === 'back' && (
           <button className={styles.iconBtn} onClick={handleBack} aria-label="voltar">
             <ArrowLeft size={22} />
           </button>
-        ) : (
+        )}
+        {/* menu hamburguer desativado por enquanto
+        {left !== 'back' && (
           <button
             className={styles.iconBtn}
-            onClick={onMenu || (() => console.log('menu'))}
+            onClick={() => console.log('menu')}
             aria-label="menu"
           >
             <Menu size={22} />
           </button>
         )}
+        */}
       </div>
 
       <div className={styles.center}>
