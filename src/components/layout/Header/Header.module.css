@@ -1,0 +1,77 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 var(--space-4);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--divider);
+}
+
+.side {
+  display: flex;
+  align-items: center;
+  width: 44px;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--bar-green);
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  border-radius: var(--radius-button);
+}
+
+.iconBtn:hover {
+  background-color: var(--bg);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--divider);
+  background-color: var(--bg);
+  color: var(--text);
+  border-radius: 50%;
+}

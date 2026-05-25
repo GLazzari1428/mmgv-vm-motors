@@ -1,0 +1,24 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ok {
+  background-color: var(--pill-ok-bg);
+  color: var(--pill-ok-fg);
+}
+
+.warn {
+  background-color: var(--pill-warn-bg);
+  color: var(--pill-warn-fg);
+}
+
+.late {
+  background-color: var(--pill-late-bg);
+  color: var(--pill-late-fg);
+}
