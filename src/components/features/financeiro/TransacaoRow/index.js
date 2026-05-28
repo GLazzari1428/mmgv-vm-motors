@@ -1,0 +1,1 @@
+export { TransacaoRow } from './TransacaoRow'

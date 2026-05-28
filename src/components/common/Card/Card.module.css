@@ -1,0 +1,33 @@
+.card {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.withBar {
+  overflow: hidden;
+}
+
+.withBar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.card[data-bar='green']::before {
+  background-color: var(--bar-green);
+}
+
+.card[data-bar='red']::before {
+  background-color: var(--bar-red);
+}
+
+.card[data-bar='yellow']::before {
+  background-color: var(--bar-yellow);
+}

@@ -1,0 +1,41 @@
+.bloco {
+  background-color: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.label {
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.total {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  color: var(--text);
+  margin: var(--space-1) 0 var(--space-3);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.down {
+  background-color: var(--pill-ok-bg);
+  color: var(--pill-ok-fg);
+}
+
+.up {
+  background-color: var(--pill-late-bg);
+  color: var(--pill-late-fg);
+}

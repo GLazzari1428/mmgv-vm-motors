@@ -6,14 +6,14 @@ export const Button = ({
   type = 'button',
   onClick,
   disabled = false,
+  fullWidth = false,
 }) => {
+  const classes = [styles.button, styles[variant], fullWidth ? styles.full : '']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <button
-      type={type}
-      className={`${styles.button} ${styles[variant]}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button type={type} className={classes} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   )

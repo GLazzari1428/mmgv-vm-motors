@@ -20,7 +20,17 @@
 
 ## 1. Objetivo do Projeto
 
-Aplicação web desenvolvida com React e Vite, seguindo uma arquitetura modular com separação clara entre componentes, páginas, serviços e estado global. O projeto serve como base sólida e escalável para o desenvolvimento de funcionalidades.
+O **VM Motors** é um aplicativo de gestão de manutenção veicular pessoal, pensado para uso em celular (mobile first). O usuário cadastra seus veículos e acompanha, para cada carro, a situação dos itens de manutenção (óleo, pneus, filtro de ar, correia, alinhamento, entre outros), com status de **em dia**, **alerta** (próximo do prazo) ou **vencido**.
+
+Principais funcionalidades:
+
+- **Início:** visão geral do veículo selecionado, com status resumido e acesso rápido às seções.
+- **Meus Carros:** lista de veículos cadastrados e adição de novos veículos.
+- **Manutenção:** itens monitorados de cada carro, com data da última troca e situação.
+- **Financeiro:** acompanhamento dos gastos por categoria (manutenção, combustível, seguro, etc.) e histórico de transações.
+- **Perfil:** dados do usuário e preferências, incluindo tema claro/escuro.
+
+A aplicação foi construída com React e Vite, seguindo uma arquitetura modular com separação clara entre componentes, páginas, estado global e utilitários. Nesta etapa o front-end utiliza dados de exemplo (mock), sem back-end.
 
 ---
 

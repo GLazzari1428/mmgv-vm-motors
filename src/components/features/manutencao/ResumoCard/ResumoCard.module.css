@@ -1,0 +1,58 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #14213d;
+  color: #fff;
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.numero {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.legenda {
+  font-size: 13px;
+  color: #c3c9d6;
+  margin-top: var(--space-1);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.ok {
+  background-color: var(--bar-green);
+}
+
+.warn {
+  background-color: var(--bar-yellow);
+}
+
+.late {
+  background-color: var(--bar-red);
+}
