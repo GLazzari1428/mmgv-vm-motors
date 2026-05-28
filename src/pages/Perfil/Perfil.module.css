@@ -1,0 +1,149 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--bg);
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.userInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.nome {
+  font-size: var(--fs-title);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.email {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.veiculos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: var(--space-3);
+}
+
+.row,
+.linkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--divider);
+  margin: 0 var(--space-4);
+}
+
+.chevron {
+  color: var(--text-secondary);
+}
+
+.toggle {
+  width: 46px;
+  height: 26px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--divider);
+  padding: 3px;
+  display: flex;
+  transition: background-color 0.2s ease;
+}
+
+.toggle.on {
+  background-color: var(--bar-green);
+  justify-content: flex-end;
+}
+
+.knob {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.sobre {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.versao {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.sair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-4);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-button);
+  background-color: transparent;
+  color: var(--danger);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  margin-top: var(--space-2);
+}
+
+.sair:hover {
+  background-color: var(--surface);
+}

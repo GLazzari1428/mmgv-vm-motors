@@ -1,0 +1,1 @@
+export { AdicionarCarro } from './AdicionarCarro'
