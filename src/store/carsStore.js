@@ -2,7 +2,37 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { carrosMock } from '@utils/mockData'
 
-// lista de carros e carro selecionado, persiste so o id selecionado
+// itens base que todo carro novo comeca acompanhando
+function itensBase() {
+  return [
+    {
+      id: 'oleo',
+      nome: 'Oleo do motor',
+      icone: 'droplet',
+      status: 'ok',
+      ultimaTroca: '-',
+      proximaTroca: '-',
+    },
+    {
+      id: 'pneu',
+      nome: 'Pneus',
+      icone: 'car',
+      status: 'ok',
+      ultimaTroca: '-',
+      proximaTroca: '-',
+    },
+    {
+      id: 'filtro',
+      nome: 'Filtro de ar',
+      icone: 'wind',
+      status: 'ok',
+      ultimaTroca: '-',
+      proximaTroca: '-',
+    },
+  ]
+}
+
+// lista de carros e carro selecionado, persiste a lista e o id selecionado
 export const useCarsStore = create(
   persist(
     (set, get) => ({
@@ -23,10 +53,31 @@ export const useCarsStore = create(
         const next = (i + dir + carros.length) % carros.length
         set({ selectedCarId: carros[next].id })
       },
+
+      // adiciona um carro novo e ja deixa ele selecionado
+      addCar: ({ modelo, placa, ano, cor }) => {
+        const novo = {
+          id: `carro-${Date.now()}`,
+          modelo,
+          placa,
+          ano: Number(ano) || ano,
+          cor: cor || '-',
+          proximaRevisao: '-',
+          itens: itensBase(),
+        }
+        set((state) => ({
+          carros: [...state.carros, novo],
+          selectedCarId: novo.id,
+        }))
+        return novo
+      },
     }),
     {
       name: 'mmgv-cars',
-      partialize: (state) => ({ selectedCarId: state.selectedCarId }),
+      partialize: (state) => ({
+        carros: state.carros,
+        selectedCarId: state.selectedCarId,
+      }),
     }
   )
 )
