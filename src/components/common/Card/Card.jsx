@@ -1,6 +1,5 @@
 import styles from './Card.module.css'
 
-// card base, aceita barra colorida na esquerda via barColor
 export const Card = ({
   children,
   barColor,
@@ -9,7 +8,12 @@ export const Card = ({
   as = 'div',
 }) => {
   const Tag = as
-  const classes = [styles.card, barColor ? styles.withBar : '', className]
+  const classes = [
+    styles.card,
+    barColor ? styles.withBar : '',
+    onClick ? styles.clickable : '',
+    className,
+  ]
     .filter(Boolean)
     .join(' ')
 
