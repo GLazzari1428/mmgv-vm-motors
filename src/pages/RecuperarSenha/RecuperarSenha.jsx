@@ -1,31 +1,32 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Car } from 'lucide-react'
+import { KeyRound } from 'lucide-react'
 import { Button } from '@components/common/Button'
-import { useAuthStore } from '@store/authStore'
+import { authService } from '@services/authService'
 import { getErro } from '@services/api'
-import styles from './Login.module.css'
+import styles from './RecuperarSenha.module.css'
 
-export const Login = () => {
+export const RecuperarSenha = () => {
   const navigate = useNavigate()
-  const login = useAuthStore((s) => s.login)
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+  const [confirma, setConfirma] = useState('')
   const [erro, setErro] = useState('')
   const [enviando, setEnviando] = useState(false)
 
-  const podeEntrar = email.trim() !== '' && senha.trim() !== '' && !enviando
+  const senhasConferem = senha !== '' && senha === confirma
+  const pode = email.trim() !== '' && senhasConferem && !enviando
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!podeEntrar) return
+    if (!pode) return
     setErro('')
     setEnviando(true)
     try {
-      await login(email.trim(), senha)
-      navigate('/inicio')
+      await authService.resetSenha(email.trim(), senha)
+      navigate('/login')
     } catch (err) {
-      setErro(getErro(err, 'Email ou senha inválidos'))
+      setErro(getErro(err, 'Não foi possível redefinir a senha'))
     } finally {
       setEnviando(false)
     }
@@ -35,10 +36,10 @@ export const Login = () => {
     <div className={styles.page}>
       <div className={styles.logo}>
         <span className={styles.logoIcon}>
-          <Car size={28} />
+          <KeyRound size={28} />
         </span>
-        <span className={styles.brand}>VM Motors</span>
-        <span className={styles.tagline}>Gestão de manutenção veicular</span>
+        <span className={styles.brand}>Recuperar senha</span>
+        <span className={styles.tagline}>Defina uma nova senha para a sua conta</span>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -53,7 +54,7 @@ export const Login = () => {
         </label>
 
         <label className={styles.field}>
-          <span>Senha</span>
+          <span>Nova senha</span>
           <input
             type="password"
             value={senha}
@@ -62,23 +63,28 @@ export const Login = () => {
           />
         </label>
 
-        <button
-          type="button"
-          className={styles.esqueci}
-          onClick={() => navigate('/recuperar-senha')}
-        >
-          Esqueci minha senha
-        </button>
+        <label className={styles.field}>
+          <span>Confirmar nova senha</span>
+          <input
+            type="password"
+            value={confirma}
+            onChange={(e) => setConfirma(e.target.value)}
+            placeholder="********"
+          />
+          {confirma !== '' && !senhasConferem && (
+            <span className={styles.erro}>As senhas não conferem</span>
+          )}
+        </label>
 
         {erro && <p className={styles.erro}>{erro}</p>}
 
-        <Button type="submit" variant="primary" fullWidth disabled={!podeEntrar}>
-          {enviando ? 'Entrando...' : 'Entrar'}
+        <Button type="submit" variant="primary" fullWidth disabled={!pode}>
+          {enviando ? 'Redefinindo...' : 'Redefinir senha'}
         </Button>
       </form>
 
       <p className={styles.link}>
-        Não tem conta? <Link to="/cadastro">Cadastre-se</Link>
+        Lembrou a senha? <Link to="/login">Entrar</Link>
       </p>
     </div>
   )

@@ -69,16 +69,6 @@
   border-color: var(--text-secondary);
 }
 
-.esqueci {
-  align-self: flex-end;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: calc(-1 * var(--space-2));
-}
-
 .erro {
   font-size: 13px;
   font-weight: 500;
