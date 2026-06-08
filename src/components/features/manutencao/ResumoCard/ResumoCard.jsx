@@ -9,17 +9,17 @@ export const ResumoCard = ({ itens }) => {
     <div className={styles.card}>
       <div className={styles.left}>
         <span className={styles.numero}>{itens.length}</span>
-        <span className={styles.legenda}>itens verificados</span>
+        <span className={styles.legenda}>Itens verificados</span>
       </div>
 
       <div className={styles.right}>
         <div className={styles.linha}>
           <span className={`${styles.dot} ${styles.late}`} />
-          {contagem.late} vencido
+          {contagem.late} vencidos
         </div>
         <div className={styles.linha}>
           <span className={`${styles.dot} ${styles.warn}`} />
-          {contagem.warn} alerta
+          {contagem.warn} em alerta
         </div>
         <div className={styles.linha}>
           <span className={`${styles.dot} ${styles.ok}`} />

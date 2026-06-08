@@ -1,13 +1,7 @@
--- vm motors - parte 2: financeiro
--- mysql 8 / mariadb, engine innodb, charset utf8mb4
--- depende da parte 1 (a tabela carros precisa existir antes)
--- os totais (gasto do mes, por categoria) nao sao guardados,
--- saem de soma sobre transacoes (ver view vw_gastos_mensais)
-
 SET NAMES utf8mb4;
-SET time_zone = '+00:00';
+SET time_zone = '-03:00';
 
--- categorias financeiras (lookup): manutencao, combustivel, etc
+-- categorias financeiras : manutencao, combustivel, etc
 CREATE TABLE categorias_financeiras (
   id     INT UNSIGNED NOT NULL AUTO_INCREMENT,
   codigo VARCHAR(40) NOT NULL,

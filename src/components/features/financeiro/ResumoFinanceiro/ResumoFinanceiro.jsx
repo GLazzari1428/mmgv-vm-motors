@@ -10,12 +10,12 @@ export const ResumoFinanceiro = ({ totalMes, mesAnterior }) => {
 
   return (
     <div className={styles.bloco}>
-      <p className={styles.label}>total gasto no mes</p>
+      <p className={styles.label}>Total gasto no mês</p>
       <p className={styles.total}>{formatMoeda(totalMes)}</p>
 
       <span className={`${styles.pill} ${gastouMenos ? styles.down : styles.up}`}>
         {gastouMenos ? <TrendingDown size={14} /> : <TrendingUp size={14} />}
-        {Math.abs(pct)}% vs mes anterior
+        {Math.abs(pct)}% vs mês anterior
       </span>
     </div>
   )

@@ -45,3 +45,19 @@
   font-weight: 600;
   color: var(--text);
 }
+
+.excluir {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: var(--space-2);
+  margin-right: calc(-1 * var(--space-2));
+  cursor: pointer;
+}
+
+.excluir:hover {
+  color: var(--danger);
+}

@@ -7,6 +7,22 @@
   box-shadow: var(--shadow-sm);
 }
 
+.clickable {
+  cursor: pointer;
+  transition:
+    transform 0.1s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.clickable:hover {
+  border-color: var(--text-secondary);
+}
+
+.clickable:active {
+  transform: scale(0.99);
+}
+
 .withBar {
   overflow: hidden;
 }

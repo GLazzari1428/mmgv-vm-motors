@@ -1,9 +1,10 @@
+import { Trash2 } from 'lucide-react'
 import { Icon } from '@components/common/Icon'
 import { formatMoeda } from '@utils/formatters'
 import styles from './TransacaoRow.module.css'
 
-// linha de transacao recente
-export const TransacaoRow = ({ transacao }) => {
+// linha de transacao recente, com botao de excluir opcional
+export const TransacaoRow = ({ transacao, onDelete }) => {
   return (
     <div className={styles.row}>
       <span className={styles.iconWrap}>
@@ -16,6 +17,12 @@ export const TransacaoRow = ({ transacao }) => {
       </div>
 
       <span className={styles.valor}>{formatMoeda(transacao.valor)}</span>
+
+      {onDelete && (
+        <button className={styles.excluir} onClick={onDelete} aria-label="excluir transação">
+          <Trash2 size={16} />
+        </button>
+      )}
     </div>
   )
 }

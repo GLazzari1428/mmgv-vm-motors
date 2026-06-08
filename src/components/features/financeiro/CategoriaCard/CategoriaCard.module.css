@@ -4,6 +4,11 @@
   gap: var(--space-2);
 }
 
+.ativo {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
 .top {
   display: flex;
   align-items: center;
