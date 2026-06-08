@@ -3,9 +3,9 @@ import { Home, Car, Wrench, Wallet, User } from 'lucide-react'
 import styles from './BottomNav.module.css'
 
 const tabs = [
-  { to: '/inicio', label: 'Inicio', icon: Home },
+  { to: '/inicio', label: 'Início', icon: Home },
   { to: '/meus-carros', label: 'Meus carros', icon: Car },
-  { to: '/manutencao', label: 'Manutencao', icon: Wrench },
+  { to: '/manutencao', label: 'Manutenção', icon: Wrench },
   { to: '/financeiro', label: 'Financeiro', icon: Wallet },
   { to: '/perfil', label: 'Perfil', icon: User },
 ]
