@@ -1,0 +1,101 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.aviso {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: var(--space-6) 0;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--bg);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.modelo {
+  font-size: var(--fs-title);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.placa {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.infos,
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: var(--space-3);
+}
+
+.linhaInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  font-size: var(--fs-body);
+  color: var(--text-secondary);
+}
+
+.linhaInfo strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.chevron {
+  color: var(--text-secondary);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--divider);
+  margin: 0 var(--space-4);
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}

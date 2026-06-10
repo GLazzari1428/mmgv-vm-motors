@@ -79,6 +79,13 @@
   margin-top: calc(-1 * var(--space-2));
 }
 
+.erro {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--danger);
+  text-align: center;
+}
+
 .link {
   text-align: center;
   font-size: 13px;

@@ -8,9 +8,9 @@ export function formatMoeda(valor) {
 
 // label e cor de cada status
 export const statusInfo = {
-  ok: { label: 'em dia', bar: 'green' },
-  warn: { label: 'alerta', bar: 'yellow' },
-  late: { label: 'vencido', bar: 'red' },
+  ok: { label: 'Em dia', bar: 'green' },
+  warn: { label: 'Alerta', bar: 'yellow' },
+  late: { label: 'Vencido', bar: 'red' },
 }
 
 // conta itens por status numa lista
@@ -22,6 +22,11 @@ export function contarStatus(itens) {
     },
     { ok: 0, warn: 0, late: 0 }
   )
+}
+
+// formata quilometragem com separador de milhar
+export function formatKm(km) {
+  return km.toLocaleString('pt-BR') + ' km'
 }
 
 // pior status entre os itens, pra resumir o estado do carro

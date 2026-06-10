@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight, Car } from 'lucide-react'
 import { useCarsStore } from '@store/carsStore'
 import styles from './CarSelector.module.css'
 
-// seletor de carro com chevrons pra alternar
+// seletor de carro
 export const CarSelector = () => {
   const carro = useCarsStore((s) => s.getSelectedCar())
   const cycleCar = useCarsStore((s) => s.cycleCar)

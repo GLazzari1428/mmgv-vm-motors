@@ -1,18 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-}
-
-.campos {
-  display: flex;
-  flex-direction: column;
   gap: var(--space-4);
-}
-
-.acao {
-  margin-top: auto;
-  padding-top: var(--space-5);
 }
 
 .field {
@@ -43,4 +32,11 @@
 .linha {
   display: flex;
   gap: var(--space-3);
+}
+
+.erro {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--danger);
+  text-align: center;
 }

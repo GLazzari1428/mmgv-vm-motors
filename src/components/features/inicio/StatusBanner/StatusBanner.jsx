@@ -7,13 +7,13 @@ export const StatusBanner = ({ carro }) => {
   const contagem = contarStatus(carro.itens)
 
   let tipo = 'ok'
-  let titulo = 'o carro esta tudo certo'
+  let titulo = 'O carro está tudo certo'
   if (contagem.late > 0) {
     tipo = 'late'
-    titulo = 'atencao, ha itens vencidos'
+    titulo = 'Atenção, há itens vencidos'
   } else if (contagem.warn > 0) {
     tipo = 'warn'
-    titulo = 'alguns itens precisam de atencao'
+    titulo = 'Alguns itens precisam de atenção'
   }
 
   const Icon = tipo === 'ok' ? CheckCircle : tipo === 'warn' ? AlertTriangle : XCircle
@@ -23,7 +23,7 @@ export const StatusBanner = ({ carro }) => {
       <Icon size={28} className={styles.icon} />
       <div>
         <p className={styles.titulo}>{titulo}</p>
-        <p className={styles.sub}>revisao em dia, proxima em {carro.proximaRevisao}</p>
+        <p className={styles.sub}>Revisão em dia, próxima em {carro.proximaRevisao}</p>
       </div>
     </div>
   )

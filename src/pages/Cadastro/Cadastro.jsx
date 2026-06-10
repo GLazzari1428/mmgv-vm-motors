@@ -2,25 +2,38 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Car } from 'lucide-react'
 import { Button } from '@components/common/Button'
+import { useAuthStore } from '@store/authStore'
+import { getErro } from '@services/api'
 import styles from './Cadastro.module.css'
 
 export const Cadastro = () => {
   const navigate = useNavigate()
+  const register = useAuthStore((s) => s.register)
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [confirma, setConfirma] = useState('')
   const [aceito, setAceito] = useState(false)
+  const [erro, setErro] = useState('')
+  const [enviando, setEnviando] = useState(false)
 
   const senhasConferem = senha !== '' && senha === confirma
   const preenchido = nome.trim() !== '' && email.trim() !== ''
-  const podeCadastrar = preenchido && senhasConferem && aceito
+  const podeCadastrar = preenchido && senhasConferem && aceito && !enviando
 
-  // aceita qualquer coisa e cadastra, auth real fica pro backend
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!podeCadastrar) return
-    navigate('/inicio')
+    setErro('')
+    setEnviando(true)
+    try {
+      await register(nome.trim(), email.trim(), senha)
+      navigate('/inicio')
+    } catch (err) {
+      setErro(getErro(err, 'Não foi possível criar a conta'))
+    } finally {
+      setEnviando(false)
+    }
   }
 
   return (
@@ -30,7 +43,7 @@ export const Cadastro = () => {
           <Car size={28} />
         </span>
         <span className={styles.brand}>Criar conta</span>
-        <span className={styles.tagline}>comece a cuidar dos seus veiculos</span>
+        <span className={styles.tagline}>Comece a cuidar dos seus veículos</span>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -73,7 +86,7 @@ export const Cadastro = () => {
             placeholder="********"
           />
           {confirma !== '' && !senhasConferem && (
-            <span className={styles.erro}>as senhas nao conferem</span>
+            <span className={styles.erro}>As senhas não conferem</span>
           )}
         </label>
 
@@ -86,13 +99,15 @@ export const Cadastro = () => {
           <span>aceito os termos de uso</span>
         </label>
 
+        {erro && <span className={styles.erro}>{erro}</span>}
+
         <Button type="submit" variant="primary" fullWidth disabled={!podeCadastrar}>
-          Cadastrar
+          {enviando ? 'Criando conta...' : 'Cadastrar'}
         </Button>
       </form>
 
       <p className={styles.link}>
-        ja tem conta? <Link to="/login">Entrar</Link>
+        Já tem conta? <Link to="/login">Entrar</Link>
       </p>
     </div>
   )

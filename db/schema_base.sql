@@ -1,5 +1,5 @@
 SET NAMES utf8mb4;
-SET time_zone = '+00:00';
+SET time_zone = '-03:00';
 
 -- usuarios do app
 CREATE TABLE usuarios (
@@ -31,7 +31,7 @@ CREATE TABLE carros (
     REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- tipos de item de manutencao (lookup): oleo, pneu, filtro, etc
+-- tipos de item de manutencao: oleo, pneu, filtro, etc
 CREATE TABLE tipos_item (
   id     INT UNSIGNED NOT NULL AUTO_INCREMENT,
   codigo VARCHAR(40) NOT NULL,
@@ -48,6 +48,7 @@ CREATE TABLE itens_manutencao (
   tipo_item_id  INT UNSIGNED NOT NULL,
   ultima_troca  DATE NULL,
   proxima_troca DATE NULL,
+  km            MEDIUMINT UNSIGNED NULL,
   criado_em     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
@@ -73,6 +74,7 @@ SELECT
   ti.icone  AS tipo_icone,
   im.ultima_troca,
   im.proxima_troca,
+  im.km,
   CASE
     WHEN im.proxima_troca IS NULL THEN 'ok'
     WHEN im.proxima_troca < CURDATE() THEN 'late'
@@ -81,3 +83,17 @@ SELECT
   END AS status
 FROM itens_manutencao im
 JOIN tipos_item ti ON ti.id = im.tipo_item_id;
+
+-- log de trocas: cada troca registrada vira uma linha, pra montar o historico
+CREATE TABLE historico_manutencao (
+  id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  item_id       INT UNSIGNED NOT NULL,
+  ultima_troca  DATE NULL,
+  proxima_troca DATE NULL,
+  km            MEDIUMINT UNSIGNED NULL,
+  registrado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_hist_item (item_id),
+  CONSTRAINT fk_hist_item FOREIGN KEY (item_id)
+    REFERENCES itens_manutencao (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,26 +1,74 @@
--- vm motors - parte 2: dados iniciais (financeiro)
--- rodar depois do schema_financeiro.sql
--- usa os carros 1 (fiat uno) e 2 (fusca) criados na parte 1
-
 INSERT INTO categorias_financeiras (id, codigo, nome, icone) VALUES
-  (1, 'manutencao',  'Manutencao',  'wrench'),
-  (2, 'combustivel', 'Combustivel', 'droplet'),
+  (1, 'manutencao',  'Manutenção',  'wrench'),
+  (2, 'combustivel', 'Combustível', 'droplet'),
   (3, 'seguro',      'Seguro',      'check-circle'),
   (4, 'ipva',        'IPVA',        'info'),
   (5, 'multas',      'Multas',      'x-circle'),
   (6, 'outros',      'Outros',      'wallet');
 
--- transacoes do fiat uno (carro 1)
+-- transacoes do fiat uno (carro 1): cerca de 13 meses, de jun/2025 a jun/2026
 INSERT INTO transacoes (carro_id, categoria_id, descricao, data, valor) VALUES
-  (1, 2, 'Posto Ipiranga',         '2026-05-18', 152.50),
-  (1, 1, 'Troca de oleo e filtro', '2026-05-10', 230.00),
-  (1, 5, 'Excesso de velocidade',  '2026-05-06', 60.00),
-  (1, 2, 'Posto Shell',            '2026-05-02', 160.00),
+  (1, 3, 'Parcela do seguro',      '2025-06-01', 90.00),
+  (1, 2, 'Posto Shell',            '2025-06-05', 150.00),
+  (1, 2, 'Posto Ipiranga',         '2025-06-20', 140.00),
+  (1, 3, 'Parcela do seguro',      '2025-07-01', 90.00),
+  (1, 1, 'Troca de óleo',          '2025-07-12', 180.00),
+  (1, 2, 'Posto BR',               '2025-07-04', 160.00),
+  (1, 2, 'Posto Shell',            '2025-07-19', 145.00),
+  (1, 3, 'Parcela do seguro',      '2025-08-01', 90.00),
+  (1, 2, 'Posto Ipiranga',         '2025-08-03', 155.00),
+  (1, 2, 'Posto Shell',            '2025-08-18', 150.00),
+  (1, 3, 'Parcela do seguro',      '2025-09-01', 90.00),
+  (1, 5, 'Excesso de velocidade',  '2025-09-15', 130.00),
+  (1, 2, 'Posto BR',               '2025-09-06', 162.00),
+  (1, 2, 'Posto Ipiranga',         '2025-09-21', 158.00),
+  (1, 3, 'Parcela do seguro',      '2025-10-01', 90.00),
+  (1, 1, 'Alinhamento e balanceamento', '2025-10-10', 160.00),
+  (1, 2, 'Posto Shell',            '2025-10-05', 150.00),
+  (1, 2, 'Posto BR',               '2025-10-20', 148.00),
+  (1, 3, 'Parcela do seguro',      '2025-11-01', 90.00),
+  (1, 2, 'Posto Ipiranga',         '2025-11-04', 165.00),
+  (1, 2, 'Posto Shell',            '2025-11-19', 152.00),
+  (1, 3, 'Parcela do seguro',      '2025-12-01', 90.00),
+  (1, 6, 'Acessórios',             '2025-12-15', 120.00),
+  (1, 2, 'Posto BR',               '2025-12-06', 170.00),
+  (1, 2, 'Posto Ipiranga',         '2025-12-22', 180.00),
+  (1, 3, 'Parcela do seguro',      '2026-01-01', 90.00),
+  (1, 4, 'IPVA 2026',              '2026-01-10', 620.00),
+  (1, 2, 'Posto Shell',            '2026-01-05', 158.00),
+  (1, 2, 'Posto BR',               '2026-01-20', 160.00),
+  (1, 3, 'Parcela do seguro',      '2026-02-01', 90.00),
+  (1, 2, 'Posto Ipiranga',         '2026-02-04', 150.00),
+  (1, 2, 'Posto Shell',            '2026-02-18', 148.00),
+  (1, 3, 'Parcela do seguro',      '2026-03-01', 90.00),
+  (1, 1, 'Troca de óleo e filtro', '2026-03-10', 230.00),
+  (1, 2, 'Posto BR',               '2026-03-06', 155.00),
+  (1, 2, 'Posto Ipiranga',         '2026-03-21', 162.00),
+  (1, 3, 'Parcela do seguro',      '2026-04-01', 90.00),
+  (1, 1, 'Pastilha de freio',      '2026-04-28', 150.00),
+  (1, 2, 'Posto Shell',            '2026-04-05', 150.00),
+  (1, 2, 'Posto BR',               '2026-04-20', 145.00),
   (1, 3, 'Parcela do seguro',      '2026-05-01', 90.00),
-  (1, 1, 'Pastilha de freio',      '2026-04-28', 150.00);
+  (1, 1, 'Troca de óleo e filtro', '2026-05-10', 230.00),
+  (1, 5, 'Excesso de velocidade',  '2026-05-06', 60.00),
+  (1, 2, 'Posto Ipiranga',         '2026-05-18', 152.50),
+  (1, 2, 'Posto Shell',            '2026-05-02', 160.00),
+  (1, 3, 'Parcela do seguro',      '2026-06-01', 90.00),
+  (1, 2, 'Posto BR',               '2026-06-03', 158.00);
 
--- transacoes do fusca (carro 2)
+-- transacoes do fusca (carro 2): mais leves, tambem ao longo de cerca de 1 ano
 INSERT INTO transacoes (carro_id, categoria_id, descricao, data, valor) VALUES
+  (2, 3, 'Parcela do seguro',       '2025-07-01', 60.00),
+  (2, 2, 'Posto BR',                '2025-07-10', 80.00),
+  (2, 1, 'Regulagem do carburador', '2025-09-12', 250.00),
+  (2, 2, 'Posto Ipiranga',          '2025-09-20', 90.00),
+  (2, 3, 'Parcela do seguro',       '2025-11-01', 60.00),
+  (2, 2, 'Posto Shell',             '2025-11-14', 95.00),
+  (2, 4, 'IPVA 2026',               '2026-01-15', 300.00),
+  (2, 2, 'Posto BR',                '2026-01-22', 88.00),
+  (2, 1, 'Troca de óleo',           '2026-03-18', 150.00),
+  (2, 2, 'Posto Ipiranga',          '2026-03-09', 92.00),
   (2, 1, 'Regulagem do carburador', '2026-05-15', 280.00),
   (2, 2, 'Posto BR',                '2026-05-12', 100.00),
-  (2, 2, 'Posto Ipiranga',          '2026-05-03', 90.00);
+  (2, 2, 'Posto Ipiranga',          '2026-05-03', 90.00),
+  (2, 2, 'Posto Shell',             '2026-06-05', 95.00);

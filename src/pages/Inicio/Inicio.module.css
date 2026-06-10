@@ -4,9 +4,57 @@
   gap: var(--space-5);
 }
 
+.vazio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--space-6) 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
   margin-top: var(--space-3);
+}
+
+.resumo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.resumoCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.resumoTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resumoTitulo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.chevron {
+  color: var(--text-secondary);
+}
+
+.modalSub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
 }
