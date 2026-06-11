@@ -7,7 +7,7 @@ export const StatusBanner = ({ carro }) => {
   const contagem = contarStatus(carro.itens)
 
   let tipo = 'ok'
-  let titulo = 'O carro está tudo certo'
+  let titulo = 'Está tudo certo com seu carro!'
   if (contagem.late > 0) {
     tipo = 'late'
     titulo = 'Atenção, há itens vencidos'
