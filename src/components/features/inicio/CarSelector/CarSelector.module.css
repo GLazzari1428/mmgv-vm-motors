@@ -14,10 +14,6 @@
   gap: var(--space-3);
 }
 
-.carIcon {
-  color: var(--text);
-}
-
 .modelo {
   font-size: var(--fs-body);
   font-weight: 600;
