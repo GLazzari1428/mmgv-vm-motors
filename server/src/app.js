@@ -4,6 +4,7 @@ import { env } from './config/env.js'
 import authRoutes from './routes/authRoutes.js'
 import usuarioRoutes from './routes/usuarioRoutes.js'
 import carrosRoutes from './routes/carrosRoutes.js'
+import assinaturaRoutes from './routes/assinaturaRoutes.js'
 import lookupRoutes from './routes/lookupRoutes.js'
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js'
 
@@ -11,7 +12,8 @@ export function createApp() {
   const app = express()
 
   app.use(cors({ origin: env.corsOrigin }))
-  app.use(express.json())
+  // limite generoso pra acomodar fotos em base64 (perfil e carro)
+  app.use(express.json({ limit: '2mb' }))
 
   // checagem de saude
   app.get('/api/health', (_req, res) => res.json({ ok: true }))
@@ -20,6 +22,7 @@ export function createApp() {
   app.use('/api/auth', authRoutes)
   app.use('/api/usuario', usuarioRoutes)
   app.use('/api/carros', carrosRoutes)
+  app.use('/api/assinatura', assinaturaRoutes)
   app.use('/api', lookupRoutes)
 
   // 404 e tratamento de erro no fim da cadeia

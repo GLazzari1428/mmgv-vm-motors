@@ -14,6 +14,7 @@ export const loginSchema = z.object({
 export const updatePerfilSchema = z.object({
   nome: z.string().trim().min(2, 'nome muito curto').max(120),
   email: z.string().trim().email('email invalido').max(160),
+  foto: z.string().max(2_000_000, 'imagem muito grande').nullable().optional(),
 })
 
 export const updateSenhaSchema = z.object({

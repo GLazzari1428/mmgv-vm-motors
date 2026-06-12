@@ -6,6 +6,7 @@ export const carroSchema = z.object({
   ano: z.coerce.number().int().min(1900).max(2100).optional().nullable(),
   cor: z.string().trim().max(40).optional().nullable(),
   proximaRevisao: z.string().trim().optional().nullable(),
+  foto: z.string().max(2_000_000, 'imagem muito grande').nullable().optional(),
 })
 
 export const itemSchema = z.object({

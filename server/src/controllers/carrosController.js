@@ -34,6 +34,7 @@ async function montarCarro(row) {
     placa: row.placa,
     ano: row.ano,
     cor: row.cor || '-',
+    foto: row.foto ?? null,
     proximaRevisao: toBR(row.proxima_revisao),
     itens: await itensDoCarro(row.id),
   }
@@ -67,7 +68,7 @@ export async function obter(req, res) {
 
 // POST /api/carros
 export async function criar(req, res) {
-  const { modelo, placa, ano, cor, proximaRevisao } = req.body
+  const { modelo, placa, ano, cor, proximaRevisao, foto } = req.body
 
   const placaEmUso = await query(
     'SELECT id FROM carros WHERE usuario_id = ? AND placa = ?',
@@ -76,9 +77,17 @@ export async function criar(req, res) {
   if (placaEmUso.length) throw conflict('voce ja tem um carro com essa placa')
 
   const result = await query(
-    `INSERT INTO carros (usuario_id, modelo, placa, ano, cor, proxima_revisao)
-     VALUES (?, ?, ?, ?, ?, ?)`,
-    [req.userId, modelo, placa, ano ?? null, cor ?? null, toISO(proximaRevisao)]
+    `INSERT INTO carros (usuario_id, modelo, placa, ano, cor, proxima_revisao, foto)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [
+      req.userId,
+      modelo,
+      placa,
+      ano ?? null,
+      cor ?? null,
+      toISO(proximaRevisao),
+      foto ?? null,
+    ]
   )
   const carroId = result.insertId
 
@@ -101,13 +110,30 @@ export async function criar(req, res) {
 // PUT /api/carros/:id
 export async function atualizar(req, res) {
   const carro = await buscarCarroDoUsuario(req.params.id, req.userId)
-  const { modelo, placa, ano, cor, proximaRevisao } = req.body
+  const { modelo, placa, ano, cor, proximaRevisao, foto } = req.body
 
-  await query(
-    `UPDATE carros SET modelo = ?, placa = ?, ano = ?, cor = ?, proxima_revisao = ?
-     WHERE id = ?`,
-    [modelo, placa, ano ?? null, cor ?? null, toISO(proximaRevisao), carro.id]
-  )
+  // foto e opcional no update: se nao veio, mantem a atual
+  if (foto === undefined) {
+    await query(
+      `UPDATE carros SET modelo = ?, placa = ?, ano = ?, cor = ?, proxima_revisao = ?
+       WHERE id = ?`,
+      [modelo, placa, ano ?? null, cor ?? null, toISO(proximaRevisao), carro.id]
+    )
+  } else {
+    await query(
+      `UPDATE carros SET modelo = ?, placa = ?, ano = ?, cor = ?, proxima_revisao = ?, foto = ?
+       WHERE id = ?`,
+      [
+        modelo,
+        placa,
+        ano ?? null,
+        cor ?? null,
+        toISO(proximaRevisao),
+        foto,
+        carro.id,
+      ]
+    )
+  }
   const atualizado = await buscarCarroDoUsuario(carro.id, req.userId)
   res.json(await montarCarro(atualizado))
 }
