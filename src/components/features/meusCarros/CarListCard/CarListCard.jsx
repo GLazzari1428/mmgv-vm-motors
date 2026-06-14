@@ -12,9 +12,13 @@ export const CarListCard = ({ carro, onClick }) => {
     <Card barColor={statusInfo[status].bar} onClick={onClick} className={styles.card}>
       <div className={styles.top}>
         <div className={styles.left}>
-          <span className={styles.carIcon}>
-            <Car size={20} />
-          </span>
+          {carro.foto ? (
+            <img src={carro.foto} alt="" className={styles.carThumb} />
+          ) : (
+            <span className={styles.carIcon}>
+              <Car size={20} />
+            </span>
+          )}
           <div>
             <p className={styles.modelo}>{carro.modelo}</p>
             <p className={styles.placa}>{carro.placa}</p>
