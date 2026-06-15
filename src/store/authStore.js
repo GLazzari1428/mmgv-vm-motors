@@ -10,6 +10,7 @@ export const useAuthStore = create(
       usuario: null,
 
       isAuth: () => !!get().token,
+      isPremium: () => get().usuario?.plano === 'premium',
 
       login: async (email, senha) => {
         const { token, usuario } = await authService.login(email, senha)

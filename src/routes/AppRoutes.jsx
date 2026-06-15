@@ -5,6 +5,7 @@ import { CarProfile } from '@pages/CarProfile'
 import { Manutencao } from '@pages/Manutencao'
 import { Financeiro } from '@pages/Financeiro'
 import { Perfil } from '@pages/Perfil'
+import { Assinatura } from '@pages/Assinatura'
 import { Login } from '@pages/Login'
 import { Cadastro } from '@pages/Cadastro'
 import { RecuperarSenha } from '@pages/RecuperarSenha'
@@ -66,6 +67,14 @@ export const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <Perfil />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/assinatura"
+          element={
+            <ProtectedRoute>
+              <Assinatura />
             </ProtectedRoute>
           }
         />

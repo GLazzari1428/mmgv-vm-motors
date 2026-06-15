@@ -1,0 +1,226 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+}
+
+.heroIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background-color: var(--accent);
+  color: var(--accent-fg);
+  margin-bottom: var(--space-2);
+}
+
+.heroTitulo {
+  font-size: var(--fs-title);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.heroSub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  max-width: 320px;
+}
+
+.beneficios {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: var(--space-3);
+}
+
+.beneficio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  position: relative;
+}
+
+.beneficio.destaque {
+  background-color: var(--bg);
+}
+
+.benIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--divider);
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.beneficio.destaque .benIcon {
+  background-color: var(--accent);
+  color: var(--accent-fg);
+  border-color: transparent;
+}
+
+.benTexto {
+  flex: 1;
+  min-width: 0;
+}
+
+.benTitleLinha {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.benTitulo {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.benSub {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--pill-warn-bg);
+  color: var(--pill-warn-fg);
+}
+
+.divider {
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: 0;
+  height: 1px;
+  background-color: var(--divider);
+}
+
+.ciclos {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.cicloCard {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-4) var(--space-3);
+  background-color: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cicloCard:hover {
+  border-color: var(--text-secondary);
+}
+
+.cicloAtivo {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset;
+}
+
+.cicloNome {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cicloPreco {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.cicloSufixo {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pillEcon {
+  position: absolute;
+  top: -10px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--pill-ok-bg);
+  color: var(--pill-ok-fg);
+}
+
+.statusCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.statusLinha {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.statusIcone {
+  color: var(--pill-ok-fg);
+  flex-shrink: 0;
+}
+
+.statusTitulo {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.statusSub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.erro {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--danger);
+}
+
+.rodape {
+  margin-top: var(--space-3);
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.4;
+  padding: 0 var(--space-3);
+}

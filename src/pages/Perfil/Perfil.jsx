@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Moon,
@@ -11,6 +11,10 @@ import {
   KeyRound,
   ChevronRight,
   Info,
+  Sparkles,
+  ShieldCheck,
+  RefreshCw,
+  Camera,
 } from 'lucide-react'
 import { AppShell } from '@components/layout/AppShell'
 import { Header } from '@components/layout/Header'
@@ -24,7 +28,17 @@ import { useAuthStore } from '@store/authStore'
 import { usePrefsStore } from '@store/prefsStore'
 import { authService } from '@services/authService'
 import { getErro } from '@services/api'
+import { compressImageToBase64 } from '@utils/image'
 import styles from './Perfil.module.css'
+
+function formatarData(iso) {
+  if (!iso) return ''
+  try {
+    return new Date(iso).toLocaleDateString('pt-BR')
+  } catch {
+    return ''
+  }
+}
 
 export const Perfil = () => {
   const navigate = useNavigate()
@@ -40,6 +54,8 @@ export const Perfil = () => {
   const setUsuario = useAuthStore((s) => s.setUsuario)
   const logout = useAuthStore((s) => s.logout)
 
+  const ehPremium = usuario?.plano === 'premium'
+
   // preferencia de notificacoes, persistida no localStorage
   const notificacoes = usePrefsStore((s) => s.notificacoes)
   const toggleNotificacoes = usePrefsStore((s) => s.toggleNotificacoes)
@@ -53,6 +69,9 @@ export const Perfil = () => {
   const [msg, setMsg] = useState('')
   const [erro, setErro] = useState('')
   const [salvando, setSalvando] = useState(false)
+  const [sincronizando, setSincronizando] = useState(false)
+
+  const fileRef = useRef(null)
 
   const abrir = (alvo) => {
     setErro('')
@@ -95,6 +114,38 @@ export const Perfil = () => {
     }
   }
 
+  const escolherFoto = () => fileRef.current?.click()
+
+  const trocarFoto = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setErro('')
+    setMsg('')
+    try {
+      const base64 = await compressImageToBase64(file, { maxSize: 256, quality: 0.8 })
+      const atualizado = await authService.updatePerfil(
+        usuario?.nome || '',
+        usuario?.email || '',
+        base64
+      )
+      setUsuario(atualizado)
+      setMsg('Foto atualizada')
+    } catch (err) {
+      setErro(getErro(err, 'Não foi possível atualizar a foto'))
+    }
+  }
+
+  // simulacao visual de sincronizacao para usuarios premium
+  const sincronizar = () => {
+    setSincronizando(true)
+    setMsg('')
+    setTimeout(() => {
+      setSincronizando(false)
+      setMsg('Sincronizado com a nuvem')
+    }, 900)
+  }
+
   const sair = () => {
     logout()
     resetCars()
@@ -105,11 +156,33 @@ export const Perfil = () => {
     <AppShell header={<Header left="menu" title="Perfil" right="avatar" />}>
       <div className={styles.page}>
         <Card className={styles.userCard}>
-          <span className={styles.avatar}>
-            <User size={26} />
-          </span>
+          <button
+            type="button"
+            className={styles.avatarBtn}
+            onClick={escolherFoto}
+            aria-label="Trocar foto de perfil"
+          >
+            {usuario?.foto ? (
+              <img src={usuario.foto} alt="" className={styles.avatarImg} />
+            ) : (
+              <span className={styles.avatar}>
+                <User size={26} />
+              </span>
+            )}
+            <span className={styles.cameraBadge}>
+              <Camera size={12} />
+            </span>
+          </button>
           <div className={styles.userInfo}>
-            <p className={styles.nome}>{usuario?.nome || 'Usuário'}</p>
+            <div className={styles.nomeLinha}>
+              <p className={styles.nome}>{usuario?.nome || 'Usuário'}</p>
+              {ehPremium && (
+                <span className={styles.premiumPill}>
+                  <Sparkles size={11} />
+                  Premium
+                </span>
+              )}
+            </div>
             <p className={styles.email}>{usuario?.email || ''}</p>
           </div>
           <div className={styles.veiculos}>
@@ -117,6 +190,14 @@ export const Perfil = () => {
             {totalCarros}
           </div>
         </Card>
+
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          onChange={trocarFoto}
+          className={styles.fileInput}
+        />
 
         <section>
           <SectionLabel>preferências</SectionLabel>
@@ -150,6 +231,48 @@ export const Perfil = () => {
                 <span className={styles.knob} />
               </button>
             </div>
+          </Card>
+        </section>
+
+        <section>
+          <SectionLabel>plano</SectionLabel>
+          <Card className={styles.group}>
+            <button className={styles.linkRow} onClick={() => navigate('/assinatura')}>
+              <div className={styles.rowLeft}>
+                <Sparkles size={18} />
+                <span>{ehPremium ? 'Gerenciar assinatura' : 'Conhecer o Premium'}</span>
+              </div>
+              <ChevronRight size={18} className={styles.chevron} />
+            </button>
+
+            {ehPremium && (
+              <>
+                <div className={styles.divider} />
+                <div className={styles.row}>
+                  <div className={styles.rowLeft}>
+                    <ShieldCheck size={18} />
+                    <span className={styles.rowTexto}>
+                      Backup E2E ativo desde {formatarData(usuario?.plano_inicio)}
+                    </span>
+                  </div>
+                </div>
+
+                <div className={styles.divider} />
+                <button
+                  className={styles.linkRow}
+                  onClick={sincronizar}
+                  disabled={sincronizando}
+                >
+                  <div className={styles.rowLeft}>
+                    <RefreshCw
+                      size={18}
+                      className={sincronizando ? styles.spin : ''}
+                    />
+                    <span>{sincronizando ? 'Sincronizando...' : 'Sincronizar agora'}</span>
+                  </div>
+                </button>
+              </>
+            )}
           </Card>
         </section>
 
