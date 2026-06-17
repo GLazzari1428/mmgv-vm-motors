@@ -59,15 +59,20 @@ export const CarProfile = () => {
     placa: carro.placa,
     ano: carro.ano != null ? String(carro.ano) : '',
     cor: carro.cor && carro.cor !== '-' ? carro.cor : '',
+    foto: carro.foto ?? null,
   }
 
   return (
     <AppShell header={<Header left="back" title="Veículo" right="avatar" />}>
       <div className={styles.page}>
         <Card className={styles.perfil}>
-          <span className={styles.avatar}>
-            <Car size={30} />
-          </span>
+          {carro.foto ? (
+            <img src={carro.foto} alt="" className={styles.fotoCarro} />
+          ) : (
+            <span className={styles.avatar}>
+              <Car size={30} />
+            </span>
+          )}
           <p className={styles.modelo}>{carro.modelo}</p>
           <p className={styles.placa}>{carro.placa}</p>
         </Card>

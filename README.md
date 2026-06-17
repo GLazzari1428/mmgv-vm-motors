@@ -52,21 +52,32 @@ Telas disponíveis no app:
 
 ## 4. Telas
 
-WIP
-<!-- 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshots/login.png" width="200"/></td>
-    <td align="center"><img src="docs/screenshots/inicio.png" width="200"/></td>
-    <td align="center"><img src="docs/screenshots/meus-carros.png" width="200"/></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/screenshots/manutencao.png" width="200"/></td>
-    <td align="center"><img src="docs/screenshots/financeiro.png" width="200"/></td>
-    <td align="center"><img src="docs/screenshots/perfil.png" width="200"/></td>
+    <td valign="middle">
+      <img src="docs/screenshots/inicio-split.png" width="400" alt="Modo claro e escuro"/>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td align="center"><b>Login</b><br/><img src="docs/screenshots/login.png" width="120"/></td>
+          <td align="center"><b>Cadastro</b><br/><img src="docs/screenshots/cadastro.png" width="120"/></td>
+          <td align="center"><b>Início</b><br/><img src="docs/screenshots/inicio-light.png" width="120"/></td>
+        </tr>
+        <tr>
+          <td align="center"><b>Meus Carros</b><br/><img src="docs/screenshots/meus-carros.png" width="120"/></td>
+          <td align="center"><b>Perfil do Carro</b><br/><img src="docs/screenshots/carro-perfil.png" width="120"/></td>
+          <td align="center"><b>Manutenção</b><br/><img src="docs/screenshots/manutencao.png" width="120"/></td>
+        </tr>
+        <tr>
+          <td align="center"><b>Financeiro</b><br/><img src="docs/screenshots/financeiro.png" width="120"/></td>
+          <td align="center"><b>Perfil</b><br/><img src="docs/screenshots/perfil.png" width="120"/></td>
+          <td align="center"><b>Assinatura</b><br/><img src="docs/screenshots/assinatura.png" width="120"/></td>
+        </tr>
+      </table>
+    </td>
   </tr>
 </table>
--->
 
 ---
 

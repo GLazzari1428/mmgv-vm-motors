@@ -30,6 +30,14 @@
   margin-bottom: var(--space-2);
 }
 
+.fotoCarro {
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: var(--space-2);
+}
+
 .modelo {
   font-size: var(--fs-title);
   font-weight: 700;

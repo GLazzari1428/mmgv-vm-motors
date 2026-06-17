@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Plus, User, Car } from 'lucide-react'
+import { ArrowLeft, Plus, User } from 'lucide-react'
 // import { Menu } from 'lucide-react' // menu hamburguer desativado por enquanto
 import styles from './Header.module.css'
 
@@ -42,8 +42,7 @@ export const Header = ({
           <h1 className={styles.title}>{title}</h1>
         ) : (
           <div className={styles.logo}>
-            <Car size={24} />
-            <span className={styles.badge} />
+            <img src="/logo.png" alt="VM Motors" />
           </div>
         )}
       </div>

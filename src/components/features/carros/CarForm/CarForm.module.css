@@ -40,3 +40,54 @@
   color: var(--danger);
   text-align: center;
 }
+
+.fotoArea {
+  position: relative;
+  align-self: center;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-card);
+  border: 1px dashed var(--divider);
+  background-color: var(--bg);
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.fotoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fotoPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cameraBadge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--accent-fg);
+  border: 2px solid var(--surface);
+}
+
+.fileInput {
+  display: none;
+}

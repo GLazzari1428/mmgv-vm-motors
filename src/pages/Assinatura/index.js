@@ -1,0 +1,1 @@
+export { Assinatura } from './Assinatura'

@@ -5,8 +5,20 @@ import { badRequest, conflict, unauthorized, notFound } from '../utils/httpError
 
 // monta o objeto de usuario sem expor o hash da senha
 function publicUser(row) {
-  return { id: row.id, nome: row.nome, email: row.email }
+  return {
+    id: row.id,
+    nome: row.nome,
+    email: row.email,
+    plano: row.plano || 'free',
+    plano_ciclo: row.plano_ciclo ?? null,
+    plano_inicio: row.plano_inicio ?? null,
+    plano_fim: row.plano_fim ?? null,
+    foto: row.foto ?? null,
+  }
 }
+
+const SELECT_PUBLIC =
+  'SELECT id, nome, email, plano, plano_ciclo, plano_inicio, plano_fim, foto FROM usuarios'
 
 // POST /api/auth/register
 export async function register(req, res) {
@@ -21,7 +33,8 @@ export async function register(req, res) {
     [nome, email, senhaHash]
   )
 
-  const usuario = { id: result.insertId, nome, email }
+  const rows = await query(`${SELECT_PUBLIC} WHERE id = ?`, [result.insertId])
+  const usuario = publicUser(rows[0])
   const token = signToken(usuario.id)
   res.status(201).json({ token, usuario })
 }
@@ -31,7 +44,8 @@ export async function login(req, res) {
   const { email, senha } = req.body
 
   const rows = await query(
-    'SELECT id, nome, email, senha_hash FROM usuarios WHERE email = ?',
+    `SELECT id, nome, email, senha_hash, plano, plano_ciclo, plano_inicio, plano_fim, foto
+       FROM usuarios WHERE email = ?`,
     [email]
   )
   if (!rows.length) throw unauthorized('email ou senha invalidos')
@@ -45,16 +59,14 @@ export async function login(req, res) {
 
 // GET /api/auth/me
 export async function me(req, res) {
-  const rows = await query('SELECT id, nome, email FROM usuarios WHERE id = ?', [
-    req.userId,
-  ])
+  const rows = await query(`${SELECT_PUBLIC} WHERE id = ?`, [req.userId])
   if (!rows.length) throw notFound('usuario nao encontrado')
   res.json(publicUser(rows[0]))
 }
 
 // PUT /api/usuario
 export async function updatePerfil(req, res) {
-  const { nome, email } = req.body
+  const { nome, email, foto } = req.body
 
   const emailEmUso = await query(
     'SELECT id FROM usuarios WHERE email = ? AND id <> ?',
@@ -62,12 +74,24 @@ export async function updatePerfil(req, res) {
   )
   if (emailEmUso.length) throw conflict('email ja usado por outra conta')
 
-  await query('UPDATE usuarios SET nome = ?, email = ? WHERE id = ?', [
-    nome,
-    email,
-    req.userId,
-  ])
-  res.json({ id: req.userId, nome, email })
+  // foto e opcional: se nao veio no body, deixa o valor atual
+  if (foto === undefined) {
+    await query('UPDATE usuarios SET nome = ?, email = ? WHERE id = ?', [
+      nome,
+      email,
+      req.userId,
+    ])
+  } else {
+    await query('UPDATE usuarios SET nome = ?, email = ?, foto = ? WHERE id = ?', [
+      nome,
+      email,
+      foto,
+      req.userId,
+    ])
+  }
+
+  const rows = await query(`${SELECT_PUBLIC} WHERE id = ?`, [req.userId])
+  res.json(publicUser(rows[0]))
 }
 
 // POST /api/auth/reset-senha

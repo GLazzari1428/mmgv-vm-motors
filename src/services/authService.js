@@ -17,8 +17,10 @@ export const authService = {
     return data
   },
 
-  async updatePerfil(nome, email) {
-    const { data } = await api.put('/usuario', { nome, email })
+  async updatePerfil(nome, email, foto) {
+    const payload = { nome, email }
+    if (foto !== undefined) payload.foto = foto
+    const { data } = await api.put('/usuario', payload)
     return data
   },
 

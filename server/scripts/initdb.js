@@ -12,6 +12,7 @@ const dbDir = join(here, '..', '..', 'db')
 const arquivos = [
   'schema_base.sql',
   'schema_financeiro.sql',
+  'schema_premium.sql',
   'seed_base.sql',
   'seed_financeiro.sql',
 ]
